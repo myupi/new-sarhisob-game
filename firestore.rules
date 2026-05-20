@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthed() {
+      return request.auth != null;
+    }
+    function userDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function isStudent() {
+      return userDoc().role == 'student';
+    }
+    function isTeacher() {
+      return userDoc().role == 'teacher';
+    }
+
+    match /users/{uid} {
+      allow read: if isAuthed() && (request.auth.uid == uid || isTeacher());
+      allow create: if request.auth.uid == uid;
+      allow update: if (request.auth.uid == uid
+        && !('role' in request.resource.data.diff(resource.data).affectedKeys()))
+        || isTeacher();
+    }
+
+    match /tasks/{taskId} {
+      allow read: if isAuthed();
+      allow write: if isTeacher();
+    }
+
+    match /submissions/{id} {
+      allow read: if isAuthed()
+        && (resource.data.studentUid == request.auth.uid || isTeacher());
+      allow create: if isStudent()
+        && request.resource.data.studentUid == request.auth.uid
+        && request.resource.data.status == 'pending';
+      allow update: if isTeacher();
+    }
+
+    match /groups/{id} {
+      allow read: if isAuthed();
+      allow write: if isTeacher();
+    }
+  }
+}
