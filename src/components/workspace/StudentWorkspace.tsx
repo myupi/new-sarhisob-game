@@ -194,20 +194,20 @@ export function StudentWorkspace() {
 
             <div className="ws-hud-brand cb-upper">
               <span className="ws-hud-title cb-grn-glow">SARHISOB</span>
-              <span className="ws-hud-subtitle cb-dim">20 bosqichli JS o‘yini</span>
+              <span className="ws-hud-subtitle cb-dim">30 bosqichli JS o‘yini</span>
             </div>
 
             <div className="ws-hud-progress">
               <div className="ws-hud-progress-meta">
                 <span className="cb-dim">Holat</span>
                 <span className="cb-grn">
-                  {completed.length}/20 bosqich · {Math.round((completed.length / 20) * 100)}%
+                  {completed.length}/{MISSIONS.length} bosqich · {Math.round((completed.length / MISSIONS.length) * 100)}%
                 </span>
               </div>
               <div className="cb-bar ws-hud-bar">
                 <div
                   className="cb-bar-fill"
-                  style={{ width: `${(completed.length / 20) * 100}%` }}
+                  style={{ width: `${(completed.length / MISSIONS.length) * 100}%` }}
                 />
               </div>
             </div>
@@ -218,9 +218,9 @@ export function StudentWorkspace() {
           </header>
 
           <div className="ws-hud-levels">
-            <div className="ws-level-badge" aria-label={`Bosqich ${missionId} dan 20`}>
+            <div className="ws-level-badge" aria-label={`Bosqich ${missionId} dan ${MISSIONS.length}`}>
               <span className="ws-level-badge-num">{String(missionId).padStart(2, "0")}</span>
-              <span className="ws-level-badge-total">/ 20</span>
+              <span className="ws-level-badge-total">/ {MISSIONS.length}</span>
             </div>
             <div className="cb-level-scroll ws-level-scroll">
               <LevelGrid

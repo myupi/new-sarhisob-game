@@ -109,7 +109,7 @@ export function LoginForm() {
             KIRISH
           </div>
           <div className="cb-dim" style={{ marginTop: 8, fontSize: 12, letterSpacing: "0.08em" }}>
-            JS o‘yiniga kirish · 20 bosqich, 1 maqsad
+            JS o‘yiniga kirish · 30 bosqich, 1 maqsad
           </div>
         </div>
 

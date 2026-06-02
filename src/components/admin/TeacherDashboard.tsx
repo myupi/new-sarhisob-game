@@ -13,6 +13,7 @@ import {
   StatCard,
 } from "@/components/cyber";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { MISSIONS } from "@/lib/missions";
 import { signOut } from "@/lib/auth";
 import { getFirebaseDb } from "@/lib/firebase";
 import { clearRoleCookie } from "@/lib/session";
@@ -196,7 +197,7 @@ export function TeacherDashboard() {
           <StatCard label="Jami talabalar" value={String(stats.total).padStart(2, "0")} accent />
           <StatCard label="Tekshirilmoqda" value={String(stats.pending).padStart(2, "0")} />
           <StatCard label="Tugallangan" value={String(stats.approved)} />
-          <StatCard label="O‘rtacha bosqich" value={`${stats.avg}/20`} />
+          <StatCard label="O‘rtacha bosqich" value={`${stats.avg}/${MISSIONS.length}`} />
           <div className="cb-panel cb-corners admin-stats-filter" style={{ padding: "12px 16px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               <div style={{ position: "relative" }}>

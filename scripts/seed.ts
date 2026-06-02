@@ -1,5 +1,5 @@
 /**
- * Firestore seed: 20 tasks + groups
+ * Firestore seed: 30 tasks + groups
  * Ishga tushirish: npx tsx scripts/seed.ts
  * Oldin .env.local da Firebase Admin yoki client creds kerak.
  *
@@ -46,7 +46,7 @@ async function main() {
     console.log(`✓ groups/${g.id}`);
   }
 
-  console.log("\nTayyor! 20 vazifa va 4 guruh yuklandi.");
+  console.log(`\nTayyor! ${MISSIONS.length} vazifa va ${GROUPS.length} guruh yuklandi.`);
   process.exit(0);
 }
 
